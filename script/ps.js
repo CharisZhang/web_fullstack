@@ -1,41 +1,40 @@
-//创建一个Document对象
-var docRef = app.documents.add(400, 300, 72);
+var inputFolder = new Folder("/Users/zhangchao/Desktop/课时2/")
+var inputFiles = inputFolder.getFiles("*.jpg")
 
-//创建一个ArtLayer对象
-var newTextLayer = docRef.artLayers.add();
+var fileName = "/Users/zhangchao/Desktop/ps/demo2.pdf"
 
-//注意:一个文本对象必须要依附于一个Layer对象，并且Layer的kind必须是TEXT类型
-newTextLayer.kind = LayerKind.TEXT;
-newTextLayer.textItem.font = "MicrosoftYaHeiUI-Blod";
-//设置要显示的内容
-newTextLayer.textItem.contents = "PSDOM Demo";
-newTextLayer.textItem.size = 200;
+alert(inputFiles[0].name)
 
-var textColor = new SolidColor;
 
-textColor.rgb.red = 255;
-textColor.rgb.green = 0;
-textColor.rgb.blue = 0;
+var names = []
+for (var i = 0; i < inputFiles.length; i++) {
+  names.push(inputFiles[i])
+}
 
-newTextLayer.textItem.color = textColor;
-//这样就可以显示文字了
+alert(names.sort())
 
-var savePath = "/Users/zhangchao/Desktop/ps/demo.pdf";
-var saveFile = new File(savePath);
-save(saveFile)
-alert('成功')
-app.activeDocument.close(SaveOptions.DONOTSAVECHANGES);
-function save(saveFile) { //saveas newText.psd
-  // var saveOptions = new PhotoshopSaveOptions();
-  // saveOptions.alphaChannels = false;
-  // saveOptions.annotations = false;
-  // saveOptions.embedColorProfile = true;
-  // saveOptions.layers = true;
-  // saveOptions.spotColors = false;
-  var PdfSaveOptions = new PDFSaveOptions();
-  // PdfSaveOptions.antiAlias = true 
-  // PdfSaveOptions.mode = OpenDocumentMode.RGB 
-  // PdfSaveOptions.resolution = 72 
-  // PdfSaveOptions.page = 3
-  app.activeDocument.saveAs(saveFile, PdfSaveOptions, true, Extension.LOWERCASE);
+for (var i = 0; i < names.length; i++) {
+  
+  names[i]
+}
+
+
+function setFilename(){}
+
+
+
+
+
+// saveToPdf(inputFiles, outputFile, options)
+
+function saveToPdf(inputFiles, fileName, options) {
+    var outputFile = File(fileName)
+    var options = new PresentationOptions
+    options.presentation = true
+    options.view = true
+    options.autoAdvance = true
+    options.interval = 5
+    options.loop = true
+    options.transition = TransitionType.RANDOM
+    makePDFPresentation(inputFiles, outputFile, options)
 }

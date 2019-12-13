@@ -12,9 +12,9 @@ for (var i = 0; i < inputFiles.length; i++) {
 }
 
 alert(names.sort())
-
+// var files = 
 for (var i = 0; i < names.length; i++) {
-  
+  if (i%2 == 1) {}
   names[i]
 }
 

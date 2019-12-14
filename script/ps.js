@@ -1,40 +1,36 @@
-var inputFolder = new Folder("/Users/zhangchao/Desktop/课时2/")
+var inputFolder = new Folder("C:/Users/tocha/Desktop/image")
 var inputFiles = inputFolder.getFiles("*.jpg")
 
-var fileName = "/Users/zhangchao/Desktop/ps/demo2.pdf"
 
-alert(inputFiles[0].name)
-
+inputFiles = inputFiles.sort()
 
 var names = []
 for (var i = 0; i < inputFiles.length; i++) {
   names.push(inputFiles[i])
+  if (names.length == 2) {
+    names = names.sort(sortBy)
+    var endFileName = 'C:/Users/tocha/Desktop/pdf/' + names[0].name.split('.')[0] + '.pdf'
+    saveToPdf(names, endFileName)
+  }
+  if (i % 2 == 1) {
+    names = []
+  }
+
 }
 
-alert(names.sort())
-// var files = 
-for (var i = 0; i < names.length; i++) {
-  if (i%2 == 1) {}
-  names[i]
+
+function sortBy(a, b) {
+  return a.name.length - b.name.length
 }
 
-
-function setFilename(){}
-
-
-
-
-
-// saveToPdf(inputFiles, outputFile, options)
-
-function saveToPdf(inputFiles, fileName, options) {
-    var outputFile = File(fileName)
-    var options = new PresentationOptions
-    options.presentation = true
-    options.view = true
-    options.autoAdvance = true
-    options.interval = 5
-    options.loop = true
-    options.transition = TransitionType.RANDOM
-    makePDFPresentation(inputFiles, outputFile, options)
+function saveToPdf(inputFiles, fileName) {
+  var outputFile = File(fileName)
+  var options = new PresentationOptions
+  options.presentation = true
+  options.view = true
+  options.autoAdvance = true
+  options.interval = 5
+  options.loop = true
+  options.transition = TransitionType.RANDOM
+  makePDFPresentation(inputFiles, outputFile, options)
 }

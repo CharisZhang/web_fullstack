@@ -4,3 +4,7 @@ program.action(name => {
     console.log('init ' + name)
 })
 program.parse(process.argv)
+
+const { clone } = require('../lib/download')
+console.log('🚀创建项目：' + name)
+await clone('github:su37josephxia/vue-template', name)
